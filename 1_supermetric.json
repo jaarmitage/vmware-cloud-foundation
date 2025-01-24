@@ -1,0 +1,104 @@
+{
+   "c173764b-44c4-459c-a1f6-c47280046682": {
+      "resourceKinds": [{
+         "resourceKindKey": "Tier",
+         "adapterKindKey": "Container"
+      }],
+      "modificationTime": 1737575925766,
+      "name": "Tier Status",
+      "formula": "min([(100 - max(${adaptertype=PingAdapter, objecttype=ip_type, metric=packetLoss:CL-CORE-VSM-Ping|max, depth=1})), ${adaptertype=VMWARE, objecttype=VirtualMachine, attribute=Super Metric|sm_aa885fcb-ef6b-4041-9db4-9899fc206947, depth=1}])",
+      "description": "",
+      "unitId": "percent",
+      "modifiedBy": "6368b8fd-5afd-405a-8513-9b438f186926"
+   },
+   "5fe7ffe9-e7e5-43a7-979d-18e616f424b1": {
+      "resourceKinds": [{
+         "resourceKindKey": "Services",
+         "adapterKindKey": "APPLICATIONDISCOVERY"
+      }],
+      "modificationTime": 1737575925768,
+      "name": "SDMP App Status",
+      "formula": "(${this, metric=System Attributes|availability} < 1 ? 0 : 100)",
+      "description": "",
+      "unitId": "",
+      "modifiedBy": "6368b8fd-5afd-405a-8513-9b438f186926"
+   },
+   "90b1f7d7-a4f2-4aa7-8d82-8c2e99cc036c": {
+      "resourceKinds": [{
+         "resourceKindKey": "ip_type",
+         "adapterKindKey": "PingAdapter"
+      }],
+      "modificationTime": 1737575925770,
+      "name": "IP Status",
+      "formula": "(100 - max(${this, metric=packetLoss:CL-CORE-VSM-Ping|max}))",
+      "description": "",
+      "unitId": "none",
+      "modifiedBy": "6368b8fd-5afd-405a-8513-9b438f186926"
+   },
+   "4f82104f-d7e1-443c-bd5a-e1cf011fd196": {
+      "resourceKinds": [{
+         "resourceKindKey": "BusinessService",
+         "adapterKindKey": "Container"
+      }],
+      "modificationTime": 1737725905398,
+      "name": "Business Application Status (Direct)",
+      "formula": "min([(100 - max(${adaptertype=PingAdapter, objecttype=ip_type, metric=packetLoss:CL-CORE-VSM-Ping|max, depth=2})), ${adaptertype=VMWARE, objecttype=VirtualMachine, attribute=Super Metric|sm_aa885fcb-ef6b-4041-9db4-9899fc206947, depth=2}, ${adaptertype=APPLICATIONDISCOVERY, objecttype=Services, metric=Super Metric|sm_ce3095a0-fa92-44d5-8dd4-9fc11b42e71f, depth=3}, ${adaptertype=APPOSUCP, objecttype=serviceavailability, metric=Super Metric|sm_ce3095a0-fa92-44d5-8dd4-9fc11b42e71f, depth=3}])",
+      "description": "",
+      "unitId": "",
+      "modifiedBy": "6368b8fd-5afd-405a-8513-9b438f186926"
+   },
+   "aa885fcb-ef6b-4041-9db4-9899fc206947": {
+      "resourceKinds": [{
+         "resourceKindKey": "VirtualMachine",
+         "adapterKindKey": "VMWARE"
+      }],
+      "modificationTime": 1737575925755,
+      "name": "VM Status",
+      "formula": "min([${this, attribute=badge|health}, ${this, attribute=badge|efficiency}, (100 - max(${this, attribute=ping|packet_loss|max})), (${this, metric=sys|poweredOn} == 1 ? 100 : 0), ${this, metric=guest|tools_running_status}, ${adaptertype=APPOSUCP, objecttype=activedirectory_services, metric=Super Metric|sm_8e5ef8e1-ab7c-4b75-9887-26cc32581117, depth=3}, ${adaptertype=APPLICATIONDISCOVERY, objecttype=Services, metric=Super Metric|sm_ce3095a0-fa92-44d5-8dd4-9fc11b42e71f, depth=3}, ${adaptertype=APPOSUCP, objecttype=serviceavailability, metric=Super Metric|sm_ce3095a0-fa92-44d5-8dd4-9fc11b42e71f, depth=3}])",
+      "description": "",
+      "unitId": "percent",
+      "modifiedBy": "6368b8fd-5afd-405a-8513-9b438f186926"
+   },
+   "8e5ef8e1-ab7c-4b75-9887-26cc32581117": {
+      "resourceKinds": [{
+         "resourceKindKey": "serviceavailability",
+         "adapterKindKey": "APPOSUCP"
+      }],
+      "modificationTime": 1737575925773,
+      "name": "Agent Discovered App Status",
+      "formula": "${this, metric=AVAIL|Resource Availability} < 1 ? 0 : 100",
+      "description": "",
+      "unitId": "",
+      "modifiedBy": "6368b8fd-5afd-405a-8513-9b438f186926"
+   },
+   "ce3095a0-fa92-44d5-8dd4-9fc11b42e71f": {
+      "resourceKinds": [
+         {
+            "resourceKindKey": "Services",
+            "adapterKindKey": "APPLICATIONDISCOVERY"
+         },
+         {
+            "resourceKindKey": "serviceavailability",
+            "adapterKindKey": "APPOSUCP"
+         }
+      ],
+      "modificationTime": 1737575925763,
+      "name": "Application Availability Status",
+      "formula": "min([${this, metric=Super Metric|sm_5fe7ffe9-e7e5-43a7-979d-18e616f424b1}, ${this, metric=Super Metric|sm_8e5ef8e1-ab7c-4b75-9887-26cc32581117}])",
+      "description": "",
+      "unitId": "",
+      "modifiedBy": "6368b8fd-5afd-405a-8513-9b438f186926"
+   },
+   "03eb05db-6ee6-49cf-a538-dec9f0835048": {
+      "resourceKinds": [{
+         "resourceKindKey": "BusinessService",
+         "adapterKindKey": "Container"
+      }],
+      "modificationTime": 1737725759560,
+      "name": "Business Application Status (by Tier)",
+      "formula": "min(${adaptertype=Container, objecttype=Tier, metric=Super Metric|sm_c173764b-44c4-459c-a1f6-c47280046682, depth=1})",
+      "description": "",
+      "unitId": "percent",
+      "modifiedBy": "6368b8fd-5afd-405a-8513-9b438f186926"
+   }
+}
