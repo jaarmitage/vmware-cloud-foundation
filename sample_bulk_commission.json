@@ -1,0 +1,28 @@
+{
+    "hostsSpec": [
+        {
+            "hostfqdn": "sa-m01-esxi05.vcf.local",
+            "username": "root",
+            "storageType": "VSAN",
+            "password": "P@$$w0rd",
+            "networkPoolName": "sa-w01-np01",
+            "vvolStorageProtocolType": ""
+        },
+        {
+            "hostfqdn": "sa-m01-esxi06.vcf.local",
+            "username": "root",
+            "storageType": "VSAN",
+            "password": "P@$$word",
+            "networkPoolName": "sa-w01-np01",
+            "vvolStorageProtocolType": ""
+        },
+        {
+            "hostfqdn": "sa-m01-esxi07.vcf.local",
+            "username": "root",
+            "storageType": "VSAN",
+            "password": "P@$$w0rd",
+            "networkPoolName": "sa-w01-np01",
+            "vvolStorageProtocolType": ""
+        }
+    ]
+}
