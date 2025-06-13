@@ -1,5 +1,5 @@
 # Replace with your Aria Operations URL
-$AriaOperationsUrl = "https://tnsc-vsmvop-01.ipa.constellab.com/suite-api" 
+$AriaOperationsUrl = "https://<ARIA_OPS_FQDN>/suite-api" 
 
 Function Get-AuthToken {
     # Replace with your credentials
