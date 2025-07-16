@@ -1,3 +1,8 @@
+### Retrieves TPM encryption recovery keys from multiple ESXi hosts and exports them to CSV.
+### Joshua Armitage
+### jarmitage@gmail.com
+### joshua.armitage@broadcom.com
+
 If ($global:DefaultVIServers.Count -ge 1) {
     Write-Host "Select connected vCenter Server to proceed"
 
